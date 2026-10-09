@@ -9,16 +9,6 @@ export interface MemoryItem {
   tag?: string;
 }
 
-export interface VideoMemoryItem {
-  id: string;
-  title: string;
-  date?: string;
-  caption: string;
-  poster: string;
-  videoUrl?: string; // Optional local/remote MP4/WebM URL
-  duration?: string;
-}
-
 export interface ConstellationPoint {
   id: string;
   title: string;
@@ -64,8 +54,14 @@ export interface BirthdayConfig {
   audio: {
     musicTitle: string;
     musicArtist: string;
-    musicUrl?: string; // Optional custom MP3/AAC in /public/audio/
+    musicUrl: string;
     enableSoundEffects: boolean;
+    playlist?: Array<{
+      id: string;
+      title: string;
+      artist: string;
+      url: string;
+    }>;
   };
   openingScene: {
     eyebrow: string;
@@ -86,12 +82,6 @@ export interface BirthdayConfig {
     sectionSubtitle: string;
     description: string;
     items: MemoryItem[];
-  };
-  videos: {
-    sectionTitle: string;
-    sectionSubtitle: string;
-    description: string;
-    items: VideoMemoryItem[];
   };
   constellation: {
     sectionTitle: string;
@@ -160,10 +150,24 @@ export const birthdayConfig: BirthdayConfig = {
     },
   },
   audio: {
-    musicTitle: "Clair de Lune & Soft Strings",
-    musicArtist: "Romantic Piano Suite",
-    musicUrl: "/audio/romantic-ambient.mp3", // Place your MP3 in public/audio/romantic-ambient.mp3, or let the built-in ambient synthesizer play
+    musicTitle: "Egiye De (এগিয়ে দে)",
+    musicArtist: "Arijit Singh & Madhubanti Bagchi",
+    musicUrl: "/audio/egiye-de.mp3",
     enableSoundEffects: true,
+    playlist: [
+      {
+        id: "track-1",
+        title: "Egiye De (এগিয়ে দে)",
+        artist: "Arijit Singh & Madhubanti Bagchi",
+        url: "/audio/egiye-de.mp3",
+      },
+      {
+        id: "track-2",
+        title: "Jeno Tomari Kache (যেন তোমারই কাছে)",
+        artist: "Arindom & Somlata",
+        url: "/audio/jeno-tomari-kache.mp3",
+      },
+    ],
   },
   openingScene: {
     eyebrow: "TONIGHT IS ALL ABOUT YOU",
@@ -178,99 +182,123 @@ export const birthdayConfig: BirthdayConfig = {
     subtitle:
       "To the most enchanting soul I have ever known. Every second spent with you feels like poetry written in the stars.",
     ctaText: "ENTER YOUR LITTLE UNIVERSE ♥",
-    heroImage: "/images/hero-portrait.jpg",
+    heroImage: "/images/tani-traditional-saree.jpeg",
   },
   memories: {
     sectionTitle: "OUR MEMORIES",
     sectionSubtitle: "Moments Frozen in Warm Golden Light",
     description:
-      "A collection of tiny moments, spontaneous laughter, quiet conversations, and all the days where I fell in love with you just a little bit more.",
+      "A collection of tiny moments, spontaneous laughter, festive celebrations, and all the days where I fell in love with you just a little bit more.",
     items: [
       {
         id: "mem-1",
-        image: "/images/hero-portrait.jpg",
-        title: "The Evening You Stole the Sunset",
-        date: "September 14",
-        location: "Paris Balcony",
-        caption: "One of my favorite days. That smile still gets me every single time.",
+        image: "/images/durga-puja-together.jpeg",
+        title: "আমাদের পুজো — Under Divine Lights",
+        date: "Sharodotsav Nights",
+        location: "Durga Puja Pandal",
+        caption: "The rhythm of the dhak, the fragrance of autumn, and you leaning into me. In that crowded pandal, the whole universe was just the two of us.",
         rotation: -2,
-        tag: "Timeless",
+        tag: "Durga Puja",
       },
       {
         id: "mem-2",
-        image: "/images/memory-sunset.jpg",
-        title: "Barefoot by the Ocean",
-        date: "July 22",
-        location: "Sunset Coast",
-        caption: "The sound of the waves and your laughter. A little moment I wish I could relive forever.",
-        rotation: 3,
-        tag: "Pure Joy",
+        image: "/images/tani-basanta-panchami.jpeg",
+        title: "শুভ বসন্ত পঞ্চমী — A Splash of Spring",
+        date: "Saraswati Puja",
+        location: "Basanta Panchami Utsav",
+        caption: "That radiant smile, the chic sunglasses, and your stunning peacock-blue saree. You brought more vibrant joy to spring than the festival itself.",
+        rotation: 2.5,
+        tag: "Spring Radiance",
       },
       {
         id: "mem-3",
-        image: "/images/memory-roses.jpg",
-        title: "Morning Garden Roses",
-        date: "May 08",
-        location: "Cotswold Path",
-        caption: "You held those flowers and outshined every single one of them without even trying.",
+        image: "/images/dol-jatra-together.jpeg",
+        title: "রং লেগেছে মনে — Dol Jatra Yellows",
+        date: "Dol Purnima Morning",
+        location: "Holi Celebrations",
+        caption: "Golden yellow abir dusted across our cheeks and tender smiles between us. Celebrating the sweetest colors of love together.",
         rotation: -1.5,
-        tag: "Gentle Moments",
+        tag: "Dol Jatra",
       },
       {
         id: "mem-4",
-        image: "/images/memory-stargazing.jpg",
-        title: "Whispers Under Fairy Lights",
-        date: "November 19",
-        location: "Under the Lantern Trees",
-        caption: "And somehow, you keep making every memory warmer, richer, and brighter.",
-        rotation: 2.5,
-        tag: "Magic",
+        image: "/images/tani-golden-hour-sunset.jpeg",
+        title: "Golden Hour in the Countryside",
+        date: "Autumn Twilight",
+        location: "Open Green Meadows",
+        caption: "The evening breeze playing through your hair, the softest smile, and the golden sun setting quietly behind you. Pure, effortless poetry.",
+        rotation: 3,
+        tag: "Golden Hour",
       },
       {
         id: "mem-5",
-        image: "/images/memory-cafe.jpg",
-        title: "Quiet Morning Coffee",
-        date: "December 04",
-        location: "Little Corner Bistro",
-        caption: "Just your eyes across the wooden table, steaming cappuccino, and nowhere else I’d rather be.",
-        rotation: -3,
-        tag: "Heartfelt",
+        image: "/images/tani-shy-sunset.jpeg",
+        title: "The Shy Candid Giggle",
+        date: "Sunset Walk",
+        location: "Breezy Fields",
+        caption: "You tried hiding that adorable giggle behind your hand, but your eyes gave all the happiness away. My favorite candid view.",
+        rotation: -2.5,
+        tag: "Sweet Candid",
       },
       {
         id: "mem-6",
-        image: "/images/finale-portrait.jpg",
-        title: "A Glimpse of Forever",
-        date: "Special Keepsake",
-        location: "City Twilight",
-        caption: "If the universe gave me a million lifetimes, I would choose you in every single one.",
-        rotation: 1.5,
-        tag: "Always",
-      },
-    ],
-  },
-  videos: {
-    sectionTitle: "CINEMATIC MEMORIES",
-    sectionSubtitle: "Motion, Laughter & Moving Pictures",
-    description:
-      "Some moments are too alive for still photographs. Press play to step back inside our favorite memories.",
-    items: [
-      {
-        id: "vid-1",
-        title: "The Golden Hour Serenade",
-        date: "Summer Romance",
-        caption: "That day we laughed until our stomachs hurt and the sun melted into warm rose gold.",
-        poster: "/images/memory-stargazing.jpg",
-        videoUrl: "", // Leave blank to show the interactive luxury cinematic player or supply /videos/memory-1.mp4
-        duration: "0:45",
+        image: "/images/together-ethnic-mirror.jpeg",
+        title: "Dressed in Festive Splendor",
+        date: "Special Celebration",
+        location: "Dressed Up Together",
+        caption: "Olive green kurta and your elegant ethnic attire. Standing together, holding each other close, celebrating every moment side by side.",
+        rotation: 2,
+        tag: "Us Together",
       },
       {
-        id: "vid-2",
-        title: "Coastal Breeze & Endless Smiles",
-        date: "Autumn Getaway",
-        caption: "The candid moments when you didn't know I was recording your pure, radiant happiness.",
-        poster: "/images/memory-sunset.jpg",
-        videoUrl: "",
-        duration: "1:12",
+        id: "mem-7",
+        image: "/images/tani-festive-silk-saree.jpeg",
+        title: "Pujo Shondha — Fairy Lights & Silk",
+        date: "Festive Evening",
+        location: "Festive Doorway",
+        caption: "Draped in peach silk and pearls with twinkling fairy lights in the evening. You carry traditional Bengali grace with such effortless royalty.",
+        rotation: -1.8,
+        tag: "Timeless Grace",
+      },
+      {
+        id: "mem-8",
+        image: "/images/tani-pink-silk-radiance.jpeg",
+        title: "Vibrant in Pink Silk & Gold",
+        date: "Celebration Day",
+        location: "Festive Sparkle",
+        caption: "Shining bright in pink silk, gold jhumkas, and that signature warm glow. Whenever you smile, the whole room lights up.",
+        rotation: 2.2,
+        tag: "Pure Radiance",
+      },
+      {
+        id: "mem-9",
+        image: "/images/tani-countryside-portrait.jpeg",
+        title: "Carefree Meadow Portrait",
+        date: "Breezy Afternoon",
+        location: "Open Countryside",
+        caption: "Long braided hair, glasses, and peace in the open fields. Your natural simplicity is the most beautiful thing in the world.",
+        rotation: -2,
+        tag: "Natural Beauty",
+      },
+      {
+        id: "mem-10",
+        image: "/images/tani-golden-hour-closed-eyes.jpeg",
+        title: "Sunset Serenity & Warm Smiles",
+        date: "Golden Twilight",
+        location: "Under the Golden Sun",
+        caption: "Eyes closed, feeling the gentle breeze, smiling with complete serenity. A moment where the rest of the world stands still.",
+        rotation: 1.8,
+        tag: "Sweet Serenity",
+      },
+      {
+        id: "mem-11",
+        image: "/images/tani-traditional-saree.jpeg",
+        title: "Traditional Elegance — Lal Shada Saree",
+        date: "Puja Celebrations",
+        location: "Dressed in Tradition",
+        caption: "Traditional red and cream saree, red bindi, and gajra in your hair. You look like timeless Bengali poetry brought to life.",
+        rotation: -1.2,
+        tag: "Regal Grace",
       },
     ],
   },
@@ -384,7 +412,7 @@ export const birthdayConfig: BirthdayConfig = {
     personalMessage:
       "Today marks another year of you bringing warmth, elegance, and beauty into this world. I am so lucky to walk beside you, to love you, and to celebrate the masterpiece that you are. May your year ahead be as breathtaking and unforgettable as you are to me.",
     signature: "With all my love & endless devotion,",
-    finaleImage: "/images/finale-portrait.jpg",
+    finaleImage: "/images/durga-puja-together.jpeg",
     replayButtonText: "REPLAY THE UNIVERSE",
   },
   easterEgg: {

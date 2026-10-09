@@ -168,32 +168,47 @@ class AudioManager {
     }
   }
 
+  public playTrack(url: string) {
+    if (typeof window === "undefined" || typeof Audio === "undefined") return;
+
+    try {
+      if (this.ambientTimer) {
+        clearTimeout(this.ambientTimer);
+        this.ambientTimer = null;
+      }
+
+      if (!this.bgAudioElement) {
+        this.bgAudioElement = new Audio(url);
+        this.bgAudioElement.loop = true;
+        this.bgAudioElement.volume = 0.5;
+      } else {
+        if (this.bgAudioElement.src !== url && !this.bgAudioElement.src.endsWith(url)) {
+          this.bgAudioElement.src = url;
+        }
+      }
+
+      this.isAmbientPlaying = true;
+      const promise = this.bgAudioElement.play();
+      if (promise !== undefined) {
+        promise.catch((err) => {
+          console.warn("Autoplay was prevented or error playing track:", err);
+          this.startProceduralAmbient();
+        });
+      }
+    } catch {
+      this.startProceduralAmbient();
+    }
+  }
+
   // Ambient Romantic Arpeggio synthesizer loop (Plays soothing Clair de lune style chords)
   public startAmbientMelody(customUrl?: string) {
-    if (this.isAmbientPlaying) return;
-    this.isAmbientPlaying = true;
-
-    // Check if custom MP3 exists and works
-    if (customUrl && typeof Audio !== "undefined") {
-      try {
-        if (!this.bgAudioElement) {
-          this.bgAudioElement = new Audio(customUrl);
-          this.bgAudioElement.loop = true;
-          this.bgAudioElement.volume = 0.35;
-        }
-        const promise = this.bgAudioElement.play();
-        if (promise !== undefined) {
-          promise.catch(() => {
-            // If custom audio fails (e.g. 404), fall back to beautiful procedural synthesizer!
-            this.startProceduralAmbient();
-          });
-          return;
-        }
-      } catch {
-        // Fall back to procedural
-      }
+    if (customUrl) {
+      this.playTrack(customUrl);
+      return;
     }
 
+    if (this.isAmbientPlaying) return;
+    this.isAmbientPlaying = true;
     this.startProceduralAmbient();
   }
 
@@ -257,7 +272,11 @@ class AudioManager {
 
   public toggleAmbient(shouldPlay: boolean, customUrl?: string) {
     if (shouldPlay) {
-      this.startAmbientMelody(customUrl);
+      if (customUrl) {
+        this.playTrack(customUrl);
+      } else {
+        this.startAmbientMelody();
+      }
     } else {
       this.stopAmbientMelody();
     }

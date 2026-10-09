@@ -122,7 +122,7 @@ export default function HeroSection() {
                 {/* Bottom Frame Badge */}
                 <div className="absolute bottom-5 left-5 right-5 flex items-center justify-between border-t border-[#FFF7EF]/20 pt-3 text-xs">
                   <span className="font-editorial italic text-sm text-[#FFF7EF]">
-                    Our Golden Hour
+                    Timeless Grace
                   </span>
                   <span className="font-script text-lg text-[#D9B779]">
                     Happy Birthday ❤️

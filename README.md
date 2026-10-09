@@ -35,11 +35,7 @@ This is a luxury, cinematic, 3D interactive birthday website built with **Next.j
    - Blur-to-focus reveal on cards.
    - Lightbox inspection mode with captions, dates, locations, and keyboard navigation (`←`, `→`, `ESC`).
 
-4. **Cinematic Video Memories:**
-   - Widescreen film theater player with custom minimal controls (Play, Pause, Mute, Progress bar, Fullscreen).
-   - Video playlist with poster frames.
-
-5. **Things I Adore About You — 3D Love Constellation:**
+4. **Things I Adore About You — 3D Love Constellation:**
    - Interactive 3D celestial star sphere with golden connecting lines.
    - Clickable stars triggering celestial chime sound effects and revealing personal reasons.
    - Quick star pill selectors and navigation arrows.
@@ -99,15 +95,7 @@ Place your photos in `public/images/`:
 
 You can add or remove memories in `birthdayConfig.memories.items` in `src/config/birthday.ts`.
 
-### 3. Add Personal Videos
-Place MP4 or WebM video files in:
-`public/videos/memory-1.mp4`
-Then in `src/config/birthday.ts`, set:
-```ts
-videoUrl: "/videos/memory-1.mp4"
-```
-
-### 4. Edit the Love Letter
+### 3. Edit the Love Letter
 In `src/config/birthday.ts`, edit `birthdayConfig.letter`:
 ```ts
 letter: {

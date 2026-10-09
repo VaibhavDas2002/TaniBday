@@ -61,7 +61,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: `Happy Birthday, ${birthdayConfig.recipient.fullName} (${birthdayConfig.recipient.nickname}) ❤️`,
     description: `A cinematic 3D romantic universe crafted with all my love for ${birthdayConfig.recipient.fullName}.`,
-    images: ["/images/hero-portrait.jpg"],
+    images: ["/images/tani-traditional-saree.jpeg"],
   },
   icons: {
     icon: "/favicon.ico",

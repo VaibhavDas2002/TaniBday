@@ -4,7 +4,6 @@ import React, { useState } from "react";
 import OpeningScene from "@/components/intro/OpeningScene";
 import HeroSection from "@/components/hero/HeroSection";
 import MemoryGallery from "@/components/gallery/MemoryGallery";
-import VideoMemories from "@/components/video-memories/VideoMemories";
 import LoveConstellation from "@/components/constellation/LoveConstellation";
 import BengaliPoetrySection from "@/components/poetry/BengaliPoetrySection";
 import LoveLetter from "@/components/love-letter/LoveLetter";
@@ -56,10 +55,7 @@ export default function BirthdayPage() {
           {/* 3. Our Memories: Interactive Storybook Gallery */}
           <MemoryGallery />
 
-          {/* 4. Cinematic Video Memories */}
-          <VideoMemories />
-
-          {/* 5. The Reasons I Love You: 3D Love Constellation */}
+          {/* 4. The Reasons I Love You: 3D Love Constellation */}
           <LoveConstellation />
 
           {/* 6. Romantic Bengali Poetry: Rabindranath Tagore, Jibanananda, Sarat Chandra, Nazrul */}
