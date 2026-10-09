@@ -1,0 +1,208 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --color-burgundy-midnight: #350B20;
+    --color-rose-deep: #791F42;
+    --color-rose-light: #B83B68;
+    --color-blush-romantic: #F5C8D5;
+    --color-gold-champagne: #D9B779;
+    --color-gold-glow: #F3E0B5;
+    --color-ivory-warm: #FFF7EF;
+    --color-black-soft: #151014;
+
+    --font-serif-display: var(--font-cormorant), Georgia, serif;
+    --font-serif-secondary: var(--font-playfair), Georgia, serif;
+    --font-sans: var(--font-manrope), system-ui, sans-serif;
+    --font-script: var(--font-vibes), cursive;
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: auto; /* Managed by Lenis */
+    background-color: var(--color-black-soft);
+    color: var(--color-ivory-warm);
+    font-family: var(--font-sans);
+    overflow-x: hidden;
+  }
+
+  body {
+    margin: 0;
+    padding: 0;
+    background-color: var(--color-black-soft);
+    color: var(--color-ivory-warm);
+    overflow-x: hidden;
+    min-height: 100vh;
+    selection-background-color: #791F42;
+    selection-color: #FFF7EF;
+  }
+
+  ::selection {
+    background: #791F42;
+    color: #FFF7EF;
+  }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #151014;
+}
+::-webkit-scrollbar-thumb {
+  background: #791F42;
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #D9B779;
+}
+
+/* Typography Utility Classes */
+.font-display {
+  font-family: var(--font-serif-display);
+}
+
+.font-editorial {
+  font-family: var(--font-serif-secondary);
+}
+
+.font-script {
+  font-family: var(--font-script);
+}
+
+.font-bengali-serif {
+  font-family: var(--font-bengali-serif), serif;
+}
+
+.font-bengali-sans {
+  font-family: var(--font-bengali-sans), sans-serif;
+}
+
+.bengali-calligraphy {
+  font-family: var(--font-bengali-serif), serif;
+  letter-spacing: 0.04em;
+  line-height: 1.7;
+}
+
+/* Luxury visual accents & glows */
+.gold-gradient-text {
+  background: linear-gradient(135deg, #FFF7EF 0%, #D9B779 50%, #B88B4A 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.rose-gradient-text {
+  background: linear-gradient(135deg, #FFF7EF 0%, #F5C8D5 40%, #791F42 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.glow-gold {
+  box-shadow: 0 0 40px -10px rgba(217, 183, 121, 0.45);
+}
+
+.glow-rose {
+  box-shadow: 0 0 50px -10px rgba(121, 31, 66, 0.6);
+}
+
+.text-glow-gold {
+  text-shadow: 0 0 25px rgba(217, 183, 121, 0.6);
+}
+
+.text-glow-rose {
+  text-shadow: 0 0 25px rgba(245, 200, 213, 0.5);
+}
+
+/* Luxury Glassmorphism */
+.glass-panel {
+  background: rgba(53, 11, 32, 0.45);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(217, 183, 121, 0.2);
+}
+
+.glass-panel-subtle {
+  background: rgba(21, 16, 20, 0.65);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 247, 239, 0.08);
+}
+
+.glass-ivory {
+  background: rgba(255, 247, 239, 0.92);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(217, 183, 121, 0.35);
+  color: #151014;
+}
+
+/* Film grain subtle overlay */
+.film-grain {
+  background-image: radial-gradient(rgba(217, 183, 121, 0.04) 1px, transparent 0);
+  background-size: 24px 24px;
+}
+
+/* Micro-animations */
+@keyframes floatGentle {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-8px) rotate(1.5deg);
+  }
+}
+
+@keyframes pulseGlow {
+  0%, 100% {
+    opacity: 0.6;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.95;
+    transform: scale(1.04);
+  }
+}
+
+@keyframes candleFlicker {
+  0%, 100% {
+    transform: scale(1) translateY(0);
+    opacity: 0.9;
+  }
+  25% {
+    transform: scale(1.08, 0.94) translateY(-1px) skewX(2deg);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(0.96, 1.05) translateY(1px) skewX(-2deg);
+    opacity: 0.85;
+  }
+  75% {
+    transform: scale(1.04, 0.97) translateY(0) skewX(1deg);
+    opacity: 0.95;
+  }
+}
+
+.animate-float-gentle {
+  animation: floatGentle 6s ease-in-out infinite;
+}
+
+.animate-pulse-glow {
+  animation: pulseGlow 4s ease-in-out infinite;
+}
+
+.animate-candle-flame {
+  animation: candleFlicker 1.8s ease-in-out infinite;
+}
+
+/* Custom romantic cursor dot */
+.cursor-dot {
+  pointer-events: none;
+  position: fixed;
+  z-index: 99999;
+  border-radius: 9999px;
+  transform: translate(-50%, -50%);
+  transition: width 0.15s ease, height 0.15s ease, opacity 0.2s ease;
+}
